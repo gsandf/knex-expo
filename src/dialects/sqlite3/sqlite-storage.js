@@ -5,8 +5,8 @@ import driver from 'react-native-sqlite-storage';
 import ClientSQLite3 from './index';
 
 module.exports = class ClientReactNativeSqliteStorage extends ClientSQLite3 {
-  dialect: 'sqlite';
-  driverName = 'react-native-sqlite-storage';
+  // dialect: 'sqlite';
+  // driverName = 'react-native-sqlite-storage';
 
   _driver() { // eslint-disable-line class-methods-use-this
     return driver;
