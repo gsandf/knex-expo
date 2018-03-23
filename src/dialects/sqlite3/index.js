@@ -1,7 +1,7 @@
 
 // SQLite3
 // -------
-import Promise from 'bluebird';
+// import Promise from 'bluebird';
 
 import inherits from 'inherits';
 import { isUndefined, map, assign, defaults } from 'lodash'

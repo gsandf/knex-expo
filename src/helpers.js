@@ -10,7 +10,7 @@ import {
   isArray,
   isTypedArray
 } from 'lodash'
-import chalk from 'chalk';
+// import chalk from 'chalk';
 
 // Pick off the attributes from only the current layer of the object.
 export function skim(data) {
@@ -35,7 +35,7 @@ export function debugLog(msg) {
 }
 
 export function error(msg) {
-  console.log(chalk.red(`Knex:Error ${msg}`))
+  console.log(`Knex:Error ${msg}`)
 }
 
   // Used to signify deprecated functionality.
@@ -45,11 +45,11 @@ export function deprecate(method, alternate) {
 
   // Used to warn about incorrect use, without error'ing
 export function warn(msg) {
-  console.log(chalk.yellow(`Knex:warning - ${msg}`))
+  console.log(`Knex:warning - ${msg}`)
 }
 
 export function exit(msg) {
-  console.log(chalk.red(msg))
+  console.log(msg);
   process.exit(1)
 }
 

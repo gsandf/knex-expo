@@ -1,14 +1,15 @@
 {
-  "name": "knex",
+  "name": "react-native-knex",
   "version": "0.14.4",
   "description": "A batteries-included SQL query & schema builder for Postgres, MySQL and SQLite3 and the Browser",
   "main": "knex.js",
   "dependencies": {
-    "babel-runtime": "^6.26.0",
+    "assert": "^1.4.1",
     "bluebird": "^3.5.1",
-    "chalk": "2.3.0",
     "commander": "^2.13.0",
     "debug": "3.1.0",
+    "eventemitter3": "^3.0.1",
+    "events": "^2.0.0",
     "inherits": "~2.0.3",
     "interpret": "^1.1.0",
     "liftoff": "2.5.0",
@@ -20,6 +21,8 @@
     "safe-buffer": "^5.1.1",
     "tarn": "^1.1.2",
     "tildify": "1.2.0",
+    "url": "^0.11.0",
+    "url-parse": "^1.2.0",
     "uuid": "^3.2.1",
     "v8flags": "^3.0.1"
   },
@@ -57,6 +60,9 @@
     "through": "^2.3.8",
     "toxiproxy-node-client": "^2.0.6"
   },
+  "peerDependencies": {
+    "react-native-sqlite-storage": "^3.3.4"
+  },
   "buildDependencies": [
     "babel-cli",
     "babel-plugin-add-module-exports",
@@ -82,7 +88,7 @@
     "oracledb:test": "docker rmi -f --no-prune knex-test-oracledb && docker build -f scripts/oracle-tests-Dockerfile --tag knex-test-oracledb . && docker run -i -t knex-test-oracledb",
     "mssql:init": "docker-compose -f scripts/mssql-docker-compose.yml up --no-start && docker-compose -f scripts/mssql-docker-compose.yml start",
     "mssql:test": "DB=mssql npm test",
-    "mssql:destroy": "docker-compose -f scripts/mssql-docker-compose.yml stop",    
+    "mssql:destroy": "docker-compose -f scripts/mssql-docker-compose.yml stop",
     "stress:init": "docker-compose -f scripts/stress-test/docker-compose.yml up --no-start && docker-compose -f scripts/stress-test/docker-compose.yml start",
     "stress:test": "node scripts/stress-test/knex-stress-test.js |  grep -A 3 -- '- STATS '",
     "stress:destroy": "docker-compose -f scripts/stress-test/docker-compose.yml stop"
@@ -92,7 +98,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tgriesser/knex.git"
+    "url": "git://github.com/WisQo-Smart/knex.git"
   },
   "keywords": [
     "sql",

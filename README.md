@@ -6,6 +6,12 @@
 [![Dependencies Status](https://david-dm.org/tgriesser/knex.svg)](https://david-dm.org/tgriesser/knex)
 [![Gitter chat](https://badges.gitter.im/tgriesser/knex.svg)](https://gitter.im/tgriesser/knex)
 
+**This is a port to react-native. Require `react-native-sqlite-storage`
+ to be installed and configured first.**
+ 
+Because there are limited tools for react-native platform,
+we only support "sqlite" driver now.
+ 
 > **A SQL query builder that is _flexible_, _portable_, and _fun_ to use!**
 
 A batteries-included, multi-dialect (MSSQL, MySQL, PostgreSQL, SQLite3, Oracle(including Oracle Wallet Authentication), WebSQL) query builder for
@@ -35,9 +41,6 @@ We have several examples [on the website](http://knexjs.org). Here is the first 
 ```js
 var knex = require('knex')({
   dialect: 'sqlite3',
-  connection: {
-    filename: './data.db'
-  }
 });
 
 // Create a table

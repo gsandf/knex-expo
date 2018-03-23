@@ -10,11 +10,8 @@ import { assign } from 'lodash'
 
 // The client names we'll allow in the `{name: lib}` pairing.
 const aliases = {
-  'mariadb' : 'maria',
-  'mariasql' : 'maria',
-  'pg' : 'postgres',
-  'postgresql' : 'postgres',
-  'sqlite' : 'sqlite3'
+  'sqlite' : 'sqlite-storage',
+  'sqlite3': 'sqlite-storage',
 };
 
 export default function Knex(config) {
@@ -28,7 +25,12 @@ export default function Knex(config) {
     Dialect = config.client
   } else {
     const clientName = config.client || config.dialect
-    Dialect = require(`./dialects/${aliases[clientName] || clientName}/index.js`)
+    const filteredName = aliases[clientName] || clientName;
+    if (filteredName !== 'sqlite-storage') {
+      throw new Error('React-native bundle requires a fixed "require()". For custom plugins, please just pass the constructor.');
+    }
+    Dialect = require('./dialects/sqlite3/sqlite-storage');
+    // Dialect = require(`./dialects/${aliases[clientName] || clientName}/index.js`)
   }
   if (typeof config.connection === 'string') {
     config = assign({}, config, {connection: parseConnection(config.connection).connection})
@@ -52,7 +54,7 @@ Object.defineProperties(Knex, {
   Promise: {
     get() {
       warn(`Knex.Promise is deprecated, either require bluebird or use the global Promise`)
-      return require('bluebird')
+      return Promise
     }
   }
 })

@@ -2,7 +2,7 @@
 import * as helpers from './helpers';
 import { isEmpty, isArray, map, clone, each } from 'lodash'
 
-export default function(Target) {
+module.exports = function(Target) {
 
   Target.prototype.toQuery = function(tz) {
     let data = this.toSQL(this._method, tz);

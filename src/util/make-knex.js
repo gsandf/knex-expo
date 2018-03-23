@@ -1,8 +1,8 @@
 
 import { EventEmitter } from 'events';
 
-import Migrator from '../migrate';
-import Seeder from '../seed';
+// import Migrator from '../migrate';
+// import Seeder from '../seed';
 import FunctionHelper from '../functionhelper';
 import QueryInterface from '../query/methods';
 import * as helpers from '../helpers';
@@ -22,7 +22,7 @@ export default function makeKnex(client) {
 
   assign(knex, {
 
-    Promise: require('bluebird'),
+    Promise: Promise,
 
     // A new query builder instance.
     queryBuilder() {
@@ -104,13 +104,15 @@ export default function makeKnex(client) {
 
     migrate: {
       get() {
-        return new Migrator(knex)
+        return null;
+        // return new Migrator(knex)
       }
     },
 
     seed: {
       get() {
-        return new Seeder(knex)
+        return null;
+        // return new Seeder(knex)
       }
     },
 
