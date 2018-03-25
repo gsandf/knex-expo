@@ -18,6 +18,7 @@ import ColumnCompiler from './schema/columncompiler';
 import { Pool, TimeoutError } from 'tarn';
 import inherits from 'inherits';
 import { EventEmitter } from 'events';
+import Promise from 'bluebird';
 
 import { makeEscape } from './query/string'
 import { assign, uniqueId, cloneDeep, defaults } from 'lodash'

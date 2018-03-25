@@ -1,12 +1,19 @@
 
 import { map, clone } from 'lodash';
 import driver from 'react-native-sqlite-storage';
+import Promise from 'bluebird';
 
 import ClientSQLite3 from './index';
 
 module.exports = class ClientReactNativeSqliteStorage extends ClientSQLite3 {
   // dialect: 'sqlite';
   // driverName = 'react-native-sqlite-storage';
+  constructor(...args) {
+    super(...args);
+
+    this.dialect = 'sqlite';
+    this.driverName = 'react-native-sqlite-storage';
+  }
 
   _driver() { // eslint-disable-line class-methods-use-this
     return driver;

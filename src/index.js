@@ -54,7 +54,7 @@ Object.defineProperties(Knex, {
   Promise: {
     get() {
       warn(`Knex.Promise is deprecated, either require bluebird or use the global Promise`)
-      return Promise
+      return require('bluebird')
     }
   }
 })

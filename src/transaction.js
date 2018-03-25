@@ -3,6 +3,7 @@
 // -------
 import { EventEmitter } from 'events';
 import Debug from 'debug'
+import Promise from 'bluebird';
 
 import makeKnex from './util/make-knex';
 
