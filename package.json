@@ -1,7 +1,7 @@
 {
-  "name": "react-native-knex",
+  "name": "knex-expo",
   "version": "0.14.4",
-  "description": "A batteries-included SQL query & schema builder for Postgres, MySQL and SQLite3 and the Browser",
+  "description": "A batteries-included SQLLite query builder for Expo",
   "main": "knex.js",
   "dependencies": {
     "assert": "^1.4.1",
@@ -40,6 +40,7 @@
     "eslint": "4.16.0",
     "eslint-plugin-import": "^2.8.0",
     "estraverse": "^4.2.0",
+    "expo": "25.0.0",
     "istanbul": "^0.4.5",
     "json-loader": "^0.5.7",
     "mariasql": "^0.2.6",
@@ -50,6 +51,7 @@
     "mysql2": "^1.5.2",
     "pg": "^7.4.1",
     "pg-query-stream": "^1.1.1",
+    "react": "^16.3.2",
     "rimraf": "^2.6.2",
     "sinon": "^4.2.2",
     "sinon-chai": "^2.14.0",
@@ -61,7 +63,8 @@
     "toxiproxy-node-client": "^2.0.6"
   },
   "peerDependencies": {
-    "react-native-sqlite-storage": "^3.3.4"
+    "expo": "^25.0.0",
+    "react": "^16.2.0"
   },
   "buildDependencies": [
     "babel-cli",
@@ -98,7 +101,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/WisQo-Smart/knex.git"
+    "url": "git://github.com/gsandf/react-native-knex.git"
   },
   "keywords": [
     "sql",

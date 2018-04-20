@@ -1,42 +1,57 @@
-
 import { map, clone } from 'lodash';
-import driver from 'react-native-sqlite-storage';
+// eslint-disable-next-line
+import { SQLite as driver } from 'expo';
 import Promise from 'bluebird';
 
 import ClientSQLite3 from './index';
 
 module.exports = class ClientReactNativeSqliteStorage extends ClientSQLite3 {
   // dialect: 'sqlite';
-  // driverName = 'react-native-sqlite-storage';
+  // driverName = 'expo-sqlite-storage';
   constructor(...args) {
     super(...args);
 
     this.dialect = 'sqlite';
-    this.driverName = 'react-native-sqlite-storage';
+    this.driverName = 'expo-sqlite-storage';
   }
 
-  _driver() { // eslint-disable-line class-methods-use-this
+  _driver() {
+    // eslint-disable-line class-methods-use-this
     return driver;
   }
 
   acquireRawConnection() {
-    this.driver.enablePromise(true);
-    return Promise.cast(this.driver.openDatabase(Object.assign({}, this.connectionSettings)));
+    const conn = Promise.cast(this.driver.openDatabase(this.connectionSettings.filename));
+    return conn;
   }
 
   destroyRawConnection(db) {
-    db.close().catch((err) => {
+    db.close().catch(err => {
       this.emit('error', err);
     });
   }
 
-  _query(connection, obj) { // eslint-disable-line class-methods-use-this
+  _query(connection, obj) {
+    // eslint-disable-line class-methods-use-this
     if (!connection) return Promise.reject(new Error('No connection provided.'));
-    return connection.executeSql(obj.sql, obj.bindings)
-      .then(([response]) => {
-        obj.response = response; // eslint-disable-line no-param-reassign
-        return obj;
+
+    return new Promise((resolve, reject) => {
+      connection.transaction(tx => {
+        tx.executeSql(
+          obj.sql,
+          obj.bindings,
+          (_, info) => {
+            obj.response = {
+              ...info,
+              rows: info.rows._array
+            };
+            obj.response = info;
+            resolve(obj);
+          },
+          reject
+        );
       });
+    });
   }
 
   _stream(connection, sql, stream) {
@@ -53,7 +68,8 @@ module.exports = class ClientReactNativeSqliteStorage extends ClientSQLite3 {
     });
   }
 
-  processResponse(obj, runner) { // eslint-disable-line class-methods-use-this
+  processResponse(obj, runner) {
+    // eslint-disable-line class-methods-use-this
     const resp = obj.response;
     if (obj.output) return obj.output.call(runner, resp);
     switch (obj.method) {
@@ -77,4 +93,4 @@ module.exports = class ClientReactNativeSqliteStorage extends ClientSQLite3 {
         return resp;
     }
   }
-}
+};
