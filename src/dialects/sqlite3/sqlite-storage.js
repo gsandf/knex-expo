@@ -41,10 +41,9 @@ module.exports = class ClientReactNativeSqliteStorage extends ClientSQLite3 {
           obj.sql,
           obj.bindings,
           (_, info) => {
-            obj.response = {
-              ...info,
+            obj.response = Object.assign({}, info, {
               rows: info.rows._array
-            };
+            });
             obj.response = info;
             resolve(obj);
           },
