@@ -47,7 +47,7 @@ module.exports = class ClientReactNativeSqliteStorage extends ClientSQLite3 {
             obj.response = info;
             resolve(obj);
           },
-          reject
+          (_, error) => reject(error)
         );
       });
     });
