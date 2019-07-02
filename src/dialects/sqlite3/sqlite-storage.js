@@ -1,6 +1,6 @@
 import { map, clone } from 'lodash';
 // eslint-disable-next-line
-import { SQLite as driver } from 'expo';
+import { SQLite as driver } from 'expo-sqlite';
 import Promise from 'bluebird';
 
 import ClientSQLite3 from './index';
