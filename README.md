@@ -6,8 +6,10 @@
 [![Dependencies Status](https://david-dm.org/tgriesser/knex.svg)](https://david-dm.org/tgriesser/knex)
 [![Gitter chat](https://badges.gitter.im/tgriesser/knex.svg)](https://gitter.im/tgriesser/knex)
 
-**This is a port to Expo for react-native. Require `Expo`
+**This is a port to Expo for react-native. Require `expo-sqlite`
 to be installed and configured first.**
+
+**[SQLite Expo Docs](https://docs.expo.io/versions/v33.0.0/sdk/sqlite/)**
 
 Because there are limited tools for the Expo platform,
 we only support "sqlite" driver.
