@@ -1,6 +1,6 @@
 import { map, clone } from 'lodash';
 // eslint-disable-next-line
-import { SQLite as driver } from 'expo-sqlite';
+import * as SQLite from 'expo-sqlite';
 import Promise from 'bluebird';
 
 import ClientSQLite3 from './index';
@@ -17,11 +17,11 @@ module.exports = class ClientReactNativeSqliteStorage extends ClientSQLite3 {
 
   _driver() {
     // eslint-disable-line class-methods-use-this
-    return driver;
+    return SQLite;
   }
 
   acquireRawConnection() {
-    const conn = Promise.cast(this.driver.openDatabase(this.connectionSettings.filename));
+    const conn = Promise.cast(SQLite.openDatabase(this.connectionSettings.filename));
     return conn;
   }
 
